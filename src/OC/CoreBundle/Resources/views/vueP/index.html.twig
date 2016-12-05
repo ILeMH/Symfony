@@ -1,0 +1,31 @@
+{# src/OC/PlatformBundle/Resources/views/layout.html.twig #}
+
+{% extends "OCCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Annonces - {{ parent() }}
+{% endblock %}
+
+{% block widget %}
+    <h4>Dernières annonces</h4>
+    {{ render(controller("OCPlatformBundle:Advert:menu", {'limit': 3})) }}
+
+
+{% endblock %}
+
+{% block body %}
+
+  {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
+  <h1>Vous pouvez accéder à nos différentes rubriques :</h1>
+
+  <hr>
+
+  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+  {% block ocplatform_body %}
+  <ul>
+      <li><a href="{{ path('oc_platform_home') }}">Liste des annonces</a></li>
+      <li><a href="{{ path('oc_platform_contact') }}">Page de contact</a></li>
+  </ul>
+  {% endblock %}
+
+{% endblock %}
